@@ -1,4 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using PruebaApi.Datos;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//conectar la base de datos de sql ApplicationDbContext es el nombre que le dimos no es un comando 
+builder.Services.AddDbContext<ApplicationDbContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+
+});
 
 // Add services to the container.
 
@@ -23,3 +34,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+
